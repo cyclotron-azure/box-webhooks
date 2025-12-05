@@ -1,5 +1,9 @@
 # Box Webhooks
 
+[![GitHub license](https://img.shields.io/github/license/cyclotron-azure/box-webhooks)](https://github.com/cyclotron-azure/box-webhooks/blob/main/LICENSE)
+[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
+[![Box SDK](https://img.shields.io/badge/Box%20SDK-Gen-0061D5)](https://github.com/box/box-dotnet-sdk-gen)
+
 A .NET solution for creating and managing Box webhooks programmatically, with a listener to receive webhook events.
 
 ## Overview
@@ -166,6 +170,16 @@ Use case: Notify team members, update permissions
 - [Box Webhook Guides](https://developer.box.com/guides/webhooks/)
 - [Box .NET SDK](https://github.com/box/box-dotnet-sdk-gen)
 
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
 ## License
 
-MIT License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
