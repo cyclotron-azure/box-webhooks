@@ -1,0 +1,205 @@
+### Box Webhook Listener Test Requests
+### Use with VS Code REST Client extension (humao.rest-client)
+
+#@baseUrl = http://localhost:7979
+@baseUrl = https://w7mj4zpq-7979.use2.devtunnels.ms
+### Health Check
+GET {{baseUrl}}/
+
+### Simulate FILE.UPLOADED Event
+POST {{baseUrl}}/webhook
+Content-Type: application/json
+BOX-DELIVERY-ID: test-delivery-001
+BOX-DELIVERY-TIMESTAMP: {{$datetime iso8601}}
+
+{
+  "type": "webhook_event",
+  "id": "test-event-001",
+  "created_at": "{{$datetime iso8601}}",
+  "trigger": "FILE.UPLOADED",
+  "webhook": {
+    "id": "webhook-123",
+    "type": "webhook"
+  },
+  "created_by": {
+    "type": "user",
+    "id": "user-456",
+    "name": "John Doe",
+    "login": "john.doe@example.com"
+  },
+  "source": {
+    "type": "file",
+    "id": "file-789",
+    "name": "quarterly-report.pdf",
+    "parent": {
+      "type": "folder",
+      "id": "folder-123",
+      "name": "Reports"
+    }
+  }
+}
+
+### Simulate FILE.DOWNLOADED Event
+POST {{baseUrl}}/webhook
+Content-Type: application/json
+BOX-DELIVERY-ID: test-delivery-002
+BOX-DELIVERY-TIMESTAMP: {{$datetime iso8601}}
+
+{
+  "type": "webhook_event",
+  "id": "test-event-002",
+  "created_at": "{{$datetime iso8601}}",
+  "trigger": "FILE.DOWNLOADED",
+  "webhook": {
+    "id": "webhook-123",
+    "type": "webhook"
+  },
+  "created_by": {
+    "type": "user",
+    "id": "user-789",
+    "name": "Jane Smith",
+    "login": "jane.smith@example.com"
+  },
+  "source": {
+    "type": "file",
+    "id": "file-456",
+    "name": "presentation.pptx",
+    "parent": {
+      "type": "folder",
+      "id": "folder-456",
+      "name": "Presentations"
+    }
+  }
+}
+
+### Simulate FILE.PREVIEWED Event
+POST {{baseUrl}}/webhook
+Content-Type: application/json
+BOX-DELIVERY-ID: test-delivery-003
+BOX-DELIVERY-TIMESTAMP: {{$datetime iso8601}}
+
+{
+  "type": "webhook_event",
+  "id": "test-event-003",
+  "created_at": "{{$datetime iso8601}}",
+  "trigger": "FILE.PREVIEWED",
+  "webhook": {
+    "id": "webhook-123",
+    "type": "webhook"
+  },
+  "created_by": {
+    "type": "user",
+    "id": "user-321",
+    "name": "Bob Wilson",
+    "login": "bob.wilson@example.com"
+  },
+  "source": {
+    "type": "file",
+    "id": "file-321",
+    "name": "contract.docx",
+    "parent": {
+      "type": "folder",
+      "id": "folder-789",
+      "name": "Contracts"
+    }
+  }
+}
+
+### Simulate FILE.TRASHED Event
+POST {{baseUrl}}/webhook
+Content-Type: application/json
+BOX-DELIVERY-ID: test-delivery-004
+BOX-DELIVERY-TIMESTAMP: {{$datetime iso8601}}
+
+{
+  "type": "webhook_event",
+  "id": "test-event-004",
+  "created_at": "{{$datetime iso8601}}",
+  "trigger": "FILE.TRASHED",
+  "webhook": {
+    "id": "webhook-123",
+    "type": "webhook"
+  },
+  "created_by": {
+    "type": "user",
+    "id": "user-654",
+    "name": "Alice Brown",
+    "login": "alice.brown@example.com"
+  },
+  "source": {
+    "type": "file",
+    "id": "file-654",
+    "name": "old-document.txt",
+    "parent": {
+      "type": "folder",
+      "id": "folder-321",
+      "name": "Archive"
+    }
+  }
+}
+
+### Simulate FOLDER.CREATED Event
+POST {{baseUrl}}/webhook
+Content-Type: application/json
+BOX-DELIVERY-ID: test-delivery-005
+BOX-DELIVERY-TIMESTAMP: {{$datetime iso8601}}
+
+{
+  "type": "webhook_event",
+  "id": "test-event-005",
+  "created_at": "{{$datetime iso8601}}",
+  "trigger": "FOLDER.CREATED",
+  "webhook": {
+    "id": "webhook-123",
+    "type": "webhook"
+  },
+  "created_by": {
+    "type": "user",
+    "id": "user-999",
+    "name": "Charlie Davis",
+    "login": "charlie.davis@example.com"
+  },
+  "source": {
+    "type": "folder",
+    "id": "folder-new-001",
+    "name": "Q4 Reports",
+    "parent": {
+      "type": "folder",
+      "id": "folder-123",
+      "name": "Reports"
+    }
+  }
+}
+
+### Simulate FILE.DELETED Event
+POST {{baseUrl}}/webhook
+Content-Type: application/json
+BOX-DELIVERY-ID: test-delivery-006
+BOX-DELIVERY-TIMESTAMP: {{$datetime iso8601}}
+
+{
+  "type": "webhook_event",
+  "id": "test-event-006",
+  "created_at": "{{$datetime iso8601}}",
+  "trigger": "FILE.DELETED",
+  "webhook": {
+    "id": "webhook-123",
+    "type": "webhook"
+  },
+  "created_by": {
+    "type": "user",
+    "id": "user-111",
+    "name": "Admin User",
+    "login": "admin@example.com"
+  },
+  "source": {
+    "type": "file",
+    "id": "file-deleted-001",
+    "name": "temp-file.tmp",
+    "parent": {
+      "type": "folder",
+      "id": "folder-trash",
+      "name": "Trash"
+    }
+  }
+}
