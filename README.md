@@ -1,6 +1,6 @@
 # Box Webhooks
 
-[![GitHub license](https://img.shields.io/github/license/cyclotron-azure/box-webhooks)](https://github.com/cyclotron-azure/box-webhooks/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/cyclotron-azure/box-webhooks/blob/main/LICENSE)
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4)](https://dotnet.microsoft.com/)
 [![Box SDK](https://img.shields.io/badge/Box%20SDK-Gen-0061D5)](https://github.com/box/box-dotnet-sdk-gen)
 
