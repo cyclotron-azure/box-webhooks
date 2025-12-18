@@ -1,9 +1,9 @@
 using Box.Sdk.Gen;
 using Box.Sdk.Gen.Managers;
-using BoxWebhookDemo.Domain.Entities;
-using BoxWebhookDemo.Domain.Interfaces;
+using BoxWebhookShared.Domain.Entities;
+using BoxWebhookShared.Domain.Interfaces;
 
-namespace BoxWebhookDemo.Infrastructure.Box;
+namespace BoxWebhookShared.Infrastructure.Box;
 
 /// <summary>
 /// Box SDK implementation of the folder repository.

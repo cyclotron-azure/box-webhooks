@@ -1,7 +1,7 @@
 using Box.Sdk.Gen;
-using BoxWebhookDemo.Domain.Interfaces;
+using BoxWebhookShared.Domain.Interfaces;
 
-namespace BoxWebhookDemo.Infrastructure.Box;
+namespace BoxWebhookShared.Infrastructure.Box;
 
 /// <summary>
 /// Factory for creating authenticated Box clients.

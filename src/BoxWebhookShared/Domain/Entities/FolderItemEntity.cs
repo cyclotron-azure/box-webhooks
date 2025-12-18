@@ -1,4 +1,4 @@
-namespace BoxWebhookDemo.Domain.Entities;
+namespace BoxWebhookShared.Domain.Entities;
 
 /// <summary>
 /// Domain entity representing an item within a Box folder.

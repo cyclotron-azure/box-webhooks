@@ -1,4 +1,4 @@
-namespace BoxWebhookDemo.Application.DTOs;
+namespace BoxWebhookShared.Application.DTOs;
 
 /// <summary>
 /// Generic result wrapper for operations.

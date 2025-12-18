@@ -1,8 +1,8 @@
-using BoxWebhookDemo.Application.DTOs;
-using BoxWebhookDemo.Domain.Entities;
-using BoxWebhookDemo.Domain.Interfaces;
+using BoxWebhookShared.Application.DTOs;
+using BoxWebhookShared.Domain.Entities;
+using BoxWebhookShared.Domain.Interfaces;
 
-namespace BoxWebhookDemo.Application.Services;
+namespace BoxWebhookShared.Application.Services;
 
 /// <summary>
 /// Application service for webhook operations.

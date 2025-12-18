@@ -1,6 +1,6 @@
-﻿using BoxWebhookDemo.Application.Services;
-using BoxWebhookDemo.Domain.Interfaces;
-using BoxWebhookDemo.Infrastructure.Box;
+﻿using BoxWebhookShared.Application.Services;
+using BoxWebhookShared.Domain.Interfaces;
+using BoxWebhookShared.Infrastructure.Box;
 using BoxWebhookDemo.Presentation.ConsoleUI;
 
 namespace BoxWebhookDemo;

@@ -1,7 +1,7 @@
-using BoxWebhookDemo.Application.DTOs;
-using BoxWebhookDemo.Domain.Entities;
+using BoxWebhookShared.Application.DTOs;
+using BoxWebhookShared.Domain.Entities;
 
-namespace BoxWebhookDemo.Application.Services;
+namespace BoxWebhookShared.Application.Services;
 
 /// <summary>
 /// Application service interface for folder operations.

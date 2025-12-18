@@ -1,6 +1,6 @@
-using BoxWebhookDemo.Domain.Entities;
+using BoxWebhookShared.Domain.Entities;
 
-namespace BoxWebhookDemo.Application.DTOs;
+namespace BoxWebhookShared.Application.DTOs;
 
 /// <summary>
 /// Data Transfer Object for webhook creation requests.

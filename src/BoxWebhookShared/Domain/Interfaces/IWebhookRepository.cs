@@ -1,6 +1,6 @@
-using BoxWebhookDemo.Domain.Entities;
+using BoxWebhookShared.Domain.Entities;
 
-namespace BoxWebhookDemo.Domain.Interfaces;
+namespace BoxWebhookShared.Domain.Interfaces;
 
 /// <summary>
 /// Repository interface for webhook operations.

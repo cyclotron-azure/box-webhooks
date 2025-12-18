@@ -1,10 +1,10 @@
 using global::Box.Sdk.Gen;
 using global::Box.Sdk.Gen.Managers;
 using global::Box.Sdk.Gen.Schemas;
-using BoxWebhookDemo.Domain.Entities;
-using BoxWebhookDemo.Domain.Interfaces;
+using BoxWebhookShared.Domain.Entities;
+using BoxWebhookShared.Domain.Interfaces;
 
-namespace BoxWebhookDemo.Infrastructure.Box;
+namespace BoxWebhookShared.Infrastructure.Box;
 
 /// <summary>
 /// Box SDK implementation of the webhook repository.

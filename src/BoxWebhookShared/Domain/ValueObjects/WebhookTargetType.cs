@@ -1,4 +1,4 @@
-namespace BoxWebhookDemo.Domain.Entities;
+namespace BoxWebhookShared.Domain.Entities;
 
 /// <summary>
 /// Value object representing the type of webhook target.

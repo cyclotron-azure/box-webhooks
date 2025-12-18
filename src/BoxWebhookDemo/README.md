@@ -1,65 +1,20 @@
 # Box Webhook Demo
 
-A C# console application demonstrating how to programmatically create and manage Box webhooks to listen for folder events, particularly new file uploads.
+An interactive C# console application demonstrating how to programmatically create and manage Box webhooks to listen for folder events, particularly new file uploads.
 
-## Architecture (DDD & SOLID)
+## Overview
 
-This project is structured using **Domain-Driven Design (DDD)** and **SOLID** principles:
+This is the **interactive console UI** for webhook management. It uses the shared `BoxWebhookShared` library for all domain logic, application services, and Box SDK implementations.
 
-```text
-BoxWebhookDemo/
-├── Domain/                          # Core business logic (no external dependencies)
-│   ├── Entities/                    # Domain entities and value objects
-│   │   ├── WebhookEntity.cs         # Webhook aggregate root
-│   │   ├── WebhookTrigger.cs        # Value object for trigger types
-│   │   ├── WebhookTargetType.cs     # Value object for target types
-│   │   ├── FolderEntity.cs          # Folder entity
-│   │   ├── FolderItemEntity.cs      # Folder item entity
-│   │   └── WebhookSummary.cs        # Lightweight webhook DTO
-│   ├── ValueObjects/                # Domain value objects
-│   │   ├── WebhookTrigger.cs        # Immutable trigger type
-│   │   └── WebhookTargetType.cs     # Immutable target type
-│   └── Interfaces/                  # Repository contracts (abstractions)
-│       ├── IWebhookRepository.cs    # Webhook persistence interface
-│       ├── IFolderRepository.cs     # Folder persistence interface
-│       └── IBoxClientFactory.cs     # Authentication factory interface
-│
-├── Application/                     # Use cases and application services
-│   ├── DTOs/                        # Data Transfer Objects
-│   │   ├── CreateWebhookRequest.cs  # Webhook creation request
-│   │   ├── CreateFolderRequest.cs   # Folder creation request
-│   │   └── OperationResult.cs       # Generic result wrapper
-│   └── Services/                    # Application services
-│       ├── IWebhookService.cs       # Webhook service interface
-│       ├── WebhookService.cs        # Webhook service implementation
-│       ├── IFolderService.cs        # Folder service interface
-│       └── FolderService.cs         # Folder service implementation
-│
-├── Infrastructure/                  # External concerns (Box SDK)
-│   └── Box/                         # Box SDK implementations
-│       ├── BoxClientFactory.cs      # Box authentication factory
-│       ├── BoxWebhookRepository.cs  # Box webhook repository
-│       └── BoxFolderRepository.cs   # Box folder repository
-│
-├── Presentation/                    # User interface layer
-│   └── ConsoleUI/                   # Console application UI
-│       ├── IConsoleIO.cs            # Console I/O abstraction
-│       ├── ConsoleIO.cs             # Standard console implementation
-│       ├── AuthenticationHandler.cs # Authentication flow handler
-│       └── MenuHandler.cs           # Interactive menu handler
-│
-└── Program.cs                       # Application entry point & DI composition
-```
+For a **CLI tool suitable for CI/CD pipelines**, see [BoxWebhookTool](../BoxWebhookTool/README.md).
 
-### SOLID Principles Applied
+## Architecture
 
-| Principle | Implementation |
-|-----------|---------------|
-| **S**ingle Responsibility | Each class has one reason to change (e.g., `WebhookService` only handles webhook logic) |
-| **O**pen/Closed | Extensible via interfaces without modifying existing code |
-| **L**iskov Substitution | Repository implementations are interchangeable |
-| **I**nterface Segregation | Focused interfaces (`IWebhookService`, `IFolderService`) |
-| **D**ependency Inversion | High-level modules depend on abstractions, not concrete implementations |
+This application is built on **Domain-Driven Design (DDD)** and **SOLID** principles by utilizing:
+
+- **BoxWebhookShared**: Core domain entities, application services, and infrastructure (Domain, Application, Infrastructure layers)
+- **BoxWebhookDemo.Presentation**: Interactive console UI components
+- **BoxWebhookDemo.Infrastructure.OAuth**: OAuth 2.0 callback handler specific to this demo
 
 ## Prerequisites
 

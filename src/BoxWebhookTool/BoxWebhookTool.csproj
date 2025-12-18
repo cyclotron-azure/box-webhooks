@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Dotnet Tool Configuration -->
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>box-webhook-tool</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+
+    <!-- Package Metadata -->
+    <PackageId>BoxWebhookTool</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Cyclotron Azure</Authors>
+    <Description>A CLI tool for managing Box webhooks from CI/CD pipelines and automation scripts</Description>
+    <RepositoryUrl>https://github.com/cyclotron-azure/box-webhooks</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Box.Sdk.Gen" Version="1.12.0" />
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
+  </ItemGroup>
+
+  <!-- Reference the shared library -->
+  <ItemGroup>
+    <ProjectReference Include="../BoxWebhookShared/BoxWebhookShared.csproj" />
+  </ItemGroup>
+
+</Project>

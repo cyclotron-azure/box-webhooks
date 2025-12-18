@@ -8,11 +8,13 @@ A .NET solution for creating and managing Box webhooks programmatically, with a 
 
 ## Overview
 
-This solution contains two projects that work together to demonstrate the complete Box webhook workflow:
+This solution contains three projects that work together to manage Box webhooks:
 
 | Project | Description |
 |---------|-------------|
-| [BoxWebhookDemo](src/BoxWebhookDemo/README.md) | Console app to create, list, and manage Box webhooks |
+| [BoxWebhookShared](src/BoxWebhookShared/) | Shared library with domain logic, application services, and Box SDK implementations |
+| [BoxWebhookDemo](src/BoxWebhookDemo/README.md) | Interactive console app to create, list, and manage Box webhooks |
+| [BoxWebhookTool](src/BoxWebhookTool/README.md) | CLI tool for managing webhooks in CI/CD pipelines and automation scripts |
 | [BoxWebhookListener](src/BoxWebhookListener/README.md) | Minimal API to receive and process webhook events |
 
 ## Quick Start
@@ -95,6 +97,33 @@ Then:
 
 Upload a file to your monitored folder in Box. You should see the webhook event in the listener console!
 
+## CLI Tool for CI/CD
+
+For automation and CI/CD pipelines, use **BoxWebhookTool** - a command-line interface that doesn't require user interaction.
+
+### Quick Start with CLI Tool
+
+```bash
+# Set environment variables for authentication
+export BOX_CLIENT_ID="your_client_id"
+export BOX_CLIENT_SECRET="your_client_secret"
+
+# Create a webhook
+dotnet src/BoxWebhookTool/bin/Debug/net10.0/BoxWebhookTool.dll create \
+  --folder-id 12345 \
+  --url https://example.com/webhook \
+  --trigger FILE.UPLOADED
+
+# List all webhooks
+dotnet src/BoxWebhookTool/bin/Debug/net10.0/BoxWebhookTool.dll list
+
+# Delete a webhook
+dotnet src/BoxWebhookTool/bin/Debug/net10.0/BoxWebhookTool.dll delete \
+  --webhook-id webhook-id-here --force
+```
+
+See [BoxWebhookTool README](src/BoxWebhookTool/README.md) for detailed CLI documentation and CI/CD examples.
+
 ## Project Structure
 
 ```
@@ -103,12 +132,19 @@ box-webhooks/
 ├── box-webhooks.sln             # Solution file
 ├── .gitignore                   # Git ignore rules
 └── src/
-    ├── BoxWebhookDemo/          # Webhook management console app
+    ├── BoxWebhookShared/        # Shared library (new!)
     │   ├── Domain/              # Core business logic
-    │   ├── Application/         # Use cases and services
-    │   ├── Infrastructure/      # Box SDK implementations
+    │   ├── Application/         # Services and DTOs
+    │   └── Infrastructure/      # Box SDK implementations
+    │
+    ├── BoxWebhookDemo/          # Webhook management console app
     │   ├── Presentation/        # Console UI
+    │   ├── Infrastructure/      # OAuth handler
     │   └── README.md            # Detailed documentation
+    │
+    ├── BoxWebhookTool/          # CLI tool for CI/CD
+    │   ├── Program.cs           # CLI entry point
+    │   └── README.md            # CLI documentation
     │
     └── BoxWebhookListener/      # Webhook receiver API
         ├── Program.cs           # Minimal API entry point
