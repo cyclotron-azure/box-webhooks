@@ -1,5 +1,5 @@
 using Box.Sdk.Gen;
-using BoxWebhookDemo.Domain.Interfaces;
+using BoxWebhookShared.Domain.Interfaces;
 using BoxWebhookDemo.Infrastructure.OAuth;
 using DotNetEnv;
 using System.Diagnostics;

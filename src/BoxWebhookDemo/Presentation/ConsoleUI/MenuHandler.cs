@@ -1,6 +1,6 @@
-using BoxWebhookDemo.Application.DTOs;
-using BoxWebhookDemo.Application.Services;
-using BoxWebhookDemo.Domain.Entities;
+using BoxWebhookShared.Application.DTOs;
+using BoxWebhookShared.Application.Services;
+using BoxWebhookShared.Domain.Entities;
 
 namespace BoxWebhookDemo.Presentation.ConsoleUI;
 
