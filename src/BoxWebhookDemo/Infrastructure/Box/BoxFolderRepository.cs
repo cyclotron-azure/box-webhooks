@@ -23,16 +23,41 @@ public class BoxFolderRepository : IFolderRepository
         string parentFolderId,
         CancellationToken cancellationToken = default)
     {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Folder name cannot be empty", nameof(name));
+
+        // Ensure parent id is set to root if not provided
+        if (string.IsNullOrWhiteSpace(parentFolderId))
+            parentFolderId = "0";
+
         var requestBody = new CreateFolderRequestBody(
             name: name,
             parent: new CreateFolderRequestBodyParentField(id: parentFolderId));
 
-        var folder = await _client.Folders.CreateFolderAsync(requestBody: requestBody);
+        try
+        {
+            var folder = await _client.Folders.CreateFolderAsync(requestBody: requestBody);
 
-        return new FolderEntity(
-            id: folder.Id ?? string.Empty,
-            name: folder.Name ?? name,
-            createdAt: folder.CreatedAt?.DateTime);
+            return new FolderEntity(
+                id: folder.Id ?? string.Empty,
+                name: folder.Name ?? name,
+                createdAt: folder.CreatedAt?.DateTime);
+        }
+        catch (HttpRequestException httpEx)
+        {
+            var status = httpEx.StatusCode.HasValue ? ((int)httpEx.StatusCode).ToString() : "unknown";
+            throw new InvalidOperationException($"Box API folder creation HTTP error (status {status}): {httpEx.Message}", httpEx);
+        }
+        catch (System.Text.Json.JsonException jsonEx)
+        {
+            throw new InvalidOperationException(
+                $"Failed to parse response from Box API when creating folder. Original error: {jsonEx.Message}. This often indicates an empty or non-JSON response (check auth token and network).",
+                jsonEx);
+        }
+        catch (Exception ex)
+        {
+            throw new InvalidOperationException($"Box API folder creation failed: {ex.Message}", ex);
+        }
     }
 
     public async Task<IReadOnlyList<FolderItemEntity>> GetItemsAsync(

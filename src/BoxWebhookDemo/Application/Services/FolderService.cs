@@ -55,7 +55,8 @@ public class FolderService : IFolderService
         }
         catch (Exception ex)
         {
-            return OperationResult<FolderEntity>.Failure($"Failed to create folder: {ex.Message}");
+            // Include exception type to make debugging easier (e.g. JsonException, HttpRequestException)
+            return OperationResult<FolderEntity>.Failure($"Failed to create folder: {ex.GetType().Name}: {ex.Message}");
         }
     }
 }

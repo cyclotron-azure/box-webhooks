@@ -39,6 +39,19 @@ class Program
             var authHandler = new AuthenticationHandler(clientFactory, console);
             var boxClient = await authHandler.AuthenticateAsync();
 
+            // Quick validation of client/auth: fetch current user to ensure token is valid
+            try
+            {
+                await boxClient.Folders.GetFolderItemsAsync(folderId: "0");
+                console.WriteLine("✓ Authentication validated successfully.");
+            }
+            catch (Exception ex)
+            {
+                console.WriteLine($"Warning: failed to validate Box client after authentication. {ex.GetType().Name}: {ex.Message}");
+                console.WriteLine("This often indicates an invalid/expired developer token or network issue.");
+                console.WriteLine("Full error: " + ex);
+            }
+
             // Create repositories (Infrastructure layer)
             IWebhookRepository webhookRepository = new BoxWebhookRepository(boxClient);
             IFolderRepository folderRepository = new BoxFolderRepository(boxClient);
