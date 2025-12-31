@@ -105,7 +105,7 @@ public class AuthenticationHandler
     private async Task<BoxClient> AuthenticateWithJWTAsync()
     {
         _console.Write("Enter path to JWT config file (or base64 encoded config): ");
-        var input = _console.ReadLine();
+        var input = _console.ReadLine()?.Trim();
 
         if (string.IsNullOrWhiteSpace(input))
             throw new ArgumentException("JWT config path or base64 string is required");
@@ -115,6 +115,10 @@ public class AuthenticationHandler
         if (File.Exists(input))
         {
             client = await _clientFactory.CreateWithJwtAsync(input);
+        }
+        else if (LooksLikeFilePath(input))
+        {
+            throw new FileNotFoundException($"JWT config file not found at: {input}", input);
         }
         else
         {
@@ -181,6 +185,16 @@ public class AuthenticationHandler
         var client = await _clientFactory.CreateWithOAuthAsync(clientId, clientSecret, authorizationCode);
         _console.WriteLine("✓ Authenticated with OAuth 2.0");
         return client;
+    }
+
+    private static bool LooksLikeFilePath(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return false;
+
+        return value.Contains('/')
+            || value.Contains('\\')
+            || value.EndsWith(".json", StringComparison.OrdinalIgnoreCase);
     }
 
     private async Task<string> AuthenticateWithOAuthAutomaticAsync(string authorizeUrl, string redirectUri)
